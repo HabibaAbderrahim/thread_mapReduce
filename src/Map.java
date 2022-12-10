@@ -4,32 +4,30 @@ public class Map {
 
     public static long[] mapTask(int[] arr) throws InterruptedException, ExecutionException {
 
-        /* create thread pool of 10 threads, each thread will sum 100 elements
-         * and main thread will combine results of 10 threads to produce final output.
-         */
         ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
         /*
-         * Creating ExecutorCompletionService to add all completed tasks in a queue.
+         * Add all completed tasks in a queue.
          */
         ExecutorCompletionService<Long> service = new ExecutorCompletionService<>(threadPool);
 
 
         /*
-         * Below for loop will have 10 loops,
+           split the array of 1k elements into 10 small data chunks (each chunk will have 100 elements)
+           and each chunk will be processed by a separate thread concurrently.
          * each loop will create a Task and will have start and end index to produce sum to that task.
          * Task is then submitted to a service, upon completion, the task will be added to a queue.
          */
         for(int i = 0; i < 1000; i += 100) {
-            service.submit(getCallableObject(arr, i, i+99));
+            service.submit(CallableObject.getCallableObject(arr, i, i+99));
         }
 
         long sum = 0l;
 
-        int count = 10;
+        int count = 10;//each thread works on chunk
         long[] mapOutput = new long[10];
-        while(count != 0) { // this while loop will iterate till all tasks have been completed.
-
+        // this while loop will iterate till all tasks have been completed.
+        while(count != 0) {
             /*
              * this will poll the completed task from the queue
              * If no task is completed then it will return null.
