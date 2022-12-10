@@ -13,7 +13,7 @@ public class CallableObject {
         };
 
     }
-
+   //fill
     public static int[] getArray(int size) {
         int[] array = new int[size];
         for(int i = 0; i < size; i++) {
@@ -21,7 +21,7 @@ public class CallableObject {
         }
         return array;
     }
-
+    //sum in rach chunk
     public static long sumArrayElements(int[] arr, int start, int end) {
         long sum = 0l;
 
