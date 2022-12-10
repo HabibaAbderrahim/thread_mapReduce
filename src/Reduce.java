@@ -11,6 +11,6 @@ public class Reduce {
             sum += x;
         }
 
-        System.out.println("Value is " + sum);
+        System.out.println("final result after Reduce data from mapout is " + sum);
     }
 }
