@@ -1,3 +1,7 @@
+/*
+Function reduceTask will take mapTask function output and will combine it to produce the final output.
+*/
+
 public class Reduce {
 
     public static void reduceTask(long[] arr) {
